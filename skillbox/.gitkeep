@@ -1,5 +1,4 @@
 public class Arithmetic {
-
     private static int a = 0;
     private static  int b = 0;
    private static int plus = 0;
