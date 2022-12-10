@@ -1,0 +1,11 @@
+public class Main {
+
+    public static void main(String[] args) {
+        Arithmetic math = new Arithmetic(5, 1);
+        math.plus();
+        math.multiplication();
+        math.min();
+        math.max();
+        math.print();
+    }
+}
