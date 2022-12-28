@@ -1,0 +1,118 @@
+
+public class courier {
+    private final String mass;
+    private final String address;
+    private final boolean property1;
+    private final String number;
+    private final boolean property2;
+    public courier(String mass, String address, boolean property1, String number, boolean property2) {
+        this.mass = mass;
+        this.address = address;
+        this.property1 = property1;
+        this.number = number;
+        this.property2 = property2;
+    }
+    public courier setmass(String mass){
+        return new courier(mass,address, property1, number, property2);
+    }
+    public String toString(){
+        return "масса:" + mass + "\n" +
+                "адресс:" + address + "\n"+
+                "номер заказа:" + number;
+    }
+}
+
+
+
+
+public class Dimensions {
+    public final int a;
+    public final int h;
+    public final int b;
+    public final int V;
+    public Dimensions(int a, int h, int b)
+    {
+        this.a=a;
+        this.h=h;
+        this.b=b;
+        V = a*h*b;
+    }
+
+    public Dimensions seta(int a){
+        return new Dimensions(a,h,b);
+    }
+}
+
+
+
+
+
+public class Elevator {
+    private int currentFloor = 1;
+    public int minFloor;
+    public int maxFloor;
+    public Elevator(int minFloor, int maxFloor) {
+        this.maxFloor = maxFloor;
+        this.minFloor=minFloor;
+    }
+
+    public int getCurrentFloor() {
+        return currentFloor;
+    }
+
+    public void moveUp() {
+        currentFloor+=1;
+        System.out.println(currentFloor);
+    }
+    public void moveDown() {
+        currentFloor-=1;
+        System.out.println(currentFloor);
+    }
+    public void move(int floor) {
+        if (currentFloor<floor)
+            moveUp();
+        else if (currentFloor>floor)
+            moveDown();
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) { /*
+        Elevator elevator = new Elevator(-3, 26);
+        while (true) {
+            System.out.print("Введите номер этажа: ");
+            int floor = new Scanner(System.in).nextInt();
+            if (floor<elevator.minFloor ){
+                System.out.println("Ошибка");
+                break;
+            }
+            else if (floor> elevator.maxFloor) {
+                System.out.println("Ошибка");
+                break;
+            }
+            elevator.move(floor);
+
+        } */
+        courier courier = new courier("2 kg","good street, house 8", true,"93709d", false);
+        courier courier1 = new courier("4 kg","good street", true,"09d", false);
+        System.out.println(courier);
+        System.out.println(courier1);
+    }
+
+
+
+}
