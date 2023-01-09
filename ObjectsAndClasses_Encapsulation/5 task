@@ -1,26 +1,29 @@
-
 public class courier {
+    private final Dimensions dimensions;
     private final String mass;
     private final String address;
     private final boolean property1;
     private final String number;
     private final boolean property2;
-    public courier(String mass, String address, boolean property1, String number, boolean property2) {
+
+    public courier(String mass, String address, boolean property1, String number, boolean property2, Dimensions dimensions) {
         this.mass = mass;
         this.address = address;
         this.property1 = property1;
         this.number = number;
         this.property2 = property2;
+        this.dimensions = dimensions;
     }
     public courier setmass(String mass){
-        return new courier(mass,address, property1, number, property2);
+        return new courier(mass,address, property1, number, property2, dimensions);
     }
     public String toString(){
         return "масса:" + mass + "\n" +
-                "адресс:" + address + "\n"+
-                "номер заказа:" + number;
+                "адресс:" + address + "\n" +
+                "номер заказа:" + number + "\n" + "Объем:" + dimensions.V;
     }
 }
+
 
 
 
@@ -42,6 +45,7 @@ public class Dimensions {
         return new Dimensions(a,h,b);
     }
 }
+
 
 
 
@@ -87,9 +91,6 @@ public class Elevator {
 
 
 
-
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) { /*
         Elevator elevator = new Elevator(-3, 26);
@@ -107,8 +108,8 @@ public class Main {
             elevator.move(floor);
 
         } */
-        courier courier = new courier("2 kg","good street, house 8", true,"93709d", false);
-        courier courier1 = new courier("4 kg","good street", true,"09d", false);
+        courier courier = new courier("2 kg","good street, house 8", true,"93709d", false, new Dimensions(4,8,7) );
+        courier courier1 = new courier("4 kg","good street", true,"09d", false, new Dimensions(1,4,6));
         System.out.println(courier);
         System.out.println(courier1);
     }
