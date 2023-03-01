@@ -1,0 +1,86 @@
+public class Computer {
+    public final static String computerVendor = null;
+    public final static String computerName = null;
+    public static int totalWeight;
+
+    public Computer(String computerVendor, String computerName) {
+    }
+    public CPU setCPU(CPU cpu) {
+        return new CPU(CPU.CPUfrequency, CPU.CPUcores, CPU.CPUmanufacturer, CPU.CPUweight);
+    }
+    public Keyboard setKeyboard(Keyboard keyboard){
+        return new Keyboard(Keyboard.keyboardType, Keyboard.backlit, Keyboard.keyboardWeight);
+    }
+     public Memory setMemory(Memory memory){
+        return new Memory(Memory.type, Memory.memoryCaparacity, Memory.memoryWeight);
+     }
+    public RAM setRAM(RAM ram){
+        return new RAM(RAM.RAMtype, RAM.RAMstorage, RAM.RAMweight);
+    }
+    public Screen setScreen(Screen screen){
+        return new Screen(Screen.screenDiagonal, Screen.screenType, Screen.screenWeight);
+    }
+
+    public static int getTotalWeight() {
+        totalWeight = CPU.CPUweight + Keyboard.keyboardWeight + Memory.memoryWeight + RAM.RAMweight + Screen.screenWeight;
+        return totalWeight;
+    }
+
+    public static String getComputerVendor() {
+        return computerVendor;
+    }
+
+    public static String getComputerName() {
+        return computerName;
+    }
+
+
+}
+public class CPU {
+    public static final int CPUfrequency = 0;
+    public static final int CPUcores = 0;
+    public static final String CPUmanufacturer = null;
+    public static final int CPUweight= 0;
+
+    public CPU(int CPUfrequency, int CPUcores, String CPUmanufacturer, int CPUweight) {
+    }
+}
+public class Keyboard {
+    public static final String keyboardType = null;
+    public static final boolean backlit = false;
+    public static final int keyboardWeight = 0;
+
+    public Keyboard(String keyboardType, boolean backlit, int KeyboardWeight) {
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+
+    }
+}public class Memory {
+    public static final MemoryType type = null;
+    public static final int memoryCaparacity = 0;
+    public static final int memoryWeight = 0;
+
+    public Memory(MemoryType memoryType, int memoryCaparacity, int memoryWeight) {
+    }
+
+}
+public enum MemoryType {
+    HDD, SSD
+}
+public class RAM {
+    public static final String RAMtype = null;
+    public static final double RAMstorage = 0;
+    public static final int RAMweight = 0;
+
+    public RAM(String RAMtype, double RAMstorage, int RAMweight) {
+    }
+}public class Screen {
+    public static final double screenDiagonal = 0;
+    public static final String screenType = null;
+    public static final int screenWeight = 0;
+
+    public Screen(double screenDiagonal, String screenType, int screenWeight) {
+    }
+}
