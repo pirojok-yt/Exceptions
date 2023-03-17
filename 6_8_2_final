@@ -1,0 +1,229 @@
+    public class Main {
+        public static void main(String[] args) {
+            Computer computer = new Computer("asus", "t101",new CPU(3, 4, "tt", 4),
+                    new RAM("DRAM",40.3, 4), new Memory(MemoryType.SSD, 512, 4), new Screen(50.2, "asad",
+                    4), new Keyboard(KeyboardType.Mechanic, true, 2));
+            Computer computer1 = new Computer("asus", "t202",new CPU(3, 4, "tt", 4),
+                    new RAM("DRAM",40.3, 4), new Memory(MemoryType.SSD, 512, 4), new Screen(50.2, "asad",
+                    4), new Keyboard(KeyboardType.Mechanic, true, 2));
+            Computer computer2 = new Computer("asus", "t303",new CPU(3, 4, "tt", 4),
+                    new RAM("DRAM",40.3, 4), new Memory(MemoryType.SSD, 512, 4), new Screen(50.2, "asad",
+                    4), new Keyboard(KeyboardType.Mechanic, true, 2));
+            System.out.println(computer);
+            System.out.println(computer1);
+            System.out.println(computer2);
+
+        }
+    }
+    public class Computer {
+
+    private final String vendor;
+    private final String name;
+    private CPU cpu;
+    private RAM ram;
+    private Memory memory;
+    private Screen screen;
+    private Keyboard keyboard;
+    private double totalWeight;
+
+    public Computer(String vendor, String name, CPU cpu, RAM ram, Memory memory, Screen screen, Keyboard keyboard) {
+        this.vendor = vendor;
+        this.name = name;
+        this.cpu = cpu;
+        this.ram = ram;
+        this.memory = memory;
+        this.screen = screen;
+        this.keyboard = keyboard;
+    }
+    public Computer setKeyboard  (Keyboard keyboard) {
+        return new Computer (vendor, name, cpu, ram, memory, screen, keyboard);
+    }
+    public Computer setCPU (CPU cpu) {
+        return new Computer (vendor, name, cpu, ram, memory, screen, keyboard);
+    }
+    public Computer setRAM (RAM ram) {
+        return new Computer (vendor, name, cpu, ram, memory, screen, keyboard);
+    }
+    public Computer setScreen (Screen screen) {
+        return new Computer (vendor, name, cpu, ram, memory, screen, keyboard);
+    }
+    public Computer setMemory (Memory memory) {
+        return new Computer (vendor, name, cpu, ram, memory, screen, keyboard);
+    }
+
+    public CPU getCpu() {
+        return cpu;
+    }
+
+    public Keyboard getKeyboard() {
+        return keyboard;
+    }
+
+    public Memory getMemory() {
+        return memory;
+    }
+
+    public RAM getRam() {
+        return ram;
+    }
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public double getTotalWeight() {
+        totalWeight += cpu.getCPUweight() + keyboard.getKeyboardWeight() + memory.getMemoryWeight() + ram.getRAMweight() + screen.getScreenWeight();
+        return totalWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Computer{" +
+                "vendor='" + vendor + '\'' +
+                ", name='" + name + '\'' +
+                ", cpu=" + cpu +
+                ", ram=" + ram +
+                ", memory=" + memory +
+                ", screen=" + screen +
+                ", keyboard=" + keyboard +
+                ", totalWeight=" + getTotalWeight() +
+                '}';
+    }
+}
+public class CPU {
+    private final int CPUfrequency;
+    private final int CPUcores;
+    private final String CPUmanufacturer;
+    private final int CPUweight;
+
+    public CPU(int cpUfrequency, int cpUcores, String cpUmanufacturer, int cpUweight) {
+        CPUfrequency = cpUfrequency;
+        CPUcores = cpUcores;
+        CPUmanufacturer = cpUmanufacturer;
+        CPUweight = cpUweight;
+    }
+
+    public int getCPUweight() {
+        return CPUweight;
+    }
+
+    @Override
+    public String toString() {
+        return "CPU{" +
+                "CPUfrequency=" + CPUfrequency +
+                ", CPUcores=" + CPUcores +
+                ", CPUmanufacturer='" + CPUmanufacturer + '\'' +
+                ", CPUweight=" + CPUweight +
+                '}';
+    }
+}
+public class Keyboard {
+    private final KeyboardType keyboardType;
+    private final boolean backlit;
+    private final int keyboardWeight;
+
+    public Keyboard(KeyboardType keyboardType, boolean backlit, int keyboardWeight) {
+        this.keyboardType = keyboardType;
+        this.backlit = backlit;
+        this.keyboardWeight = keyboardWeight;
+    }
+
+    public int getKeyboardWeight() {
+        return keyboardWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Keyboard{" +
+                "keyboardType=" + keyboardType +
+                ", backlit=" + backlit +
+                ", keyboardWeight=" + keyboardWeight +
+                '}';
+    }
+}
+public class Memory {
+    private final MemoryType memoryType;
+    private final int memoryCaparacity;
+    private final int memoryWeight;
+
+    public Memory(MemoryType memoryType, int memoryCaparacity, int memoryWeight) {
+        this.memoryType = memoryType;
+        this.memoryCaparacity = memoryCaparacity;
+        this.memoryWeight = memoryWeight;
+    }
+
+    public int getMemoryWeight() {
+        return memoryWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Memory{" +
+                "memoryType=" + memoryType +
+                ", memoryCaparacity=" + memoryCaparacity +
+                ", memoryWeight=" + memoryWeight +
+                '}';
+    }
+}
+public enum KeyboardType {
+    Mechanic, membran
+}
+public enum MemoryType {
+    HDD, SSD
+}
+public class RAM {
+    private final String RAMtype;
+    private final double RAMstorage;
+    private final int RAMweight;
+
+    public RAM(String raMtype, double raMstorage, int raMweight) {
+        RAMtype = raMtype;
+        RAMstorage = raMstorage;
+        RAMweight = raMweight;
+    }
+
+    public int getRAMweight() {
+        return RAMweight;
+    }
+
+    @Override
+    public String toString() {
+        return "RAM{" +
+                "RAMtype='" + RAMtype + '\'' +
+                ", RAMstorage=" + RAMstorage +
+                ", RAMweight=" + RAMweight +
+                '}';
+    }
+}
+public class Screen {
+    private final double screenDiagonal;
+    private final String screenType;
+    private final int screenWeight;
+
+    public Screen(double screenDiagonal, String screenType, int screenWeight) {
+        this.screenDiagonal = screenDiagonal;
+        this.screenType = screenType;
+        this.screenWeight = screenWeight;
+    }
+
+    public int getScreenWeight() {
+        return screenWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Screen{" +
+                "screenDiagonal=" + screenDiagonal +
+                ", screenType='" + screenType + '\'' +
+                ", screenWeight=" + screenWeight +
+                '}';
+    }
+}
