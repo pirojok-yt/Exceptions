@@ -5,7 +5,8 @@ public class Basket {
     private String items = "";
     private static int totalPrice = 0;
     private int limit;
-    private static int averagePrice;
+    private static int totalPriceForAllBaskets = 0;
+    private static int totalCountForAllBaskets = 0;
 
     public Basket() {
         items = "Список товаров:";
@@ -24,15 +25,13 @@ public class Basket {
         this.totalWeight = totalWeight;
 
     }
-
-    public static int getCount() {
-        return count;
+    public static void increaseTotalPriceForAllBaskets(int price) {
+        totalPriceForAllBaskets = totalPriceForAllBaskets + price;
     }
 
-    public static void increaseCount() {
-        count = count + 1;
+    public static void increaseTotalCountForAllBaskets(int count) {
+        totalCountForAllBaskets = totalCountForAllBaskets + count;
     }
-
     public void add(String name, int price, double weight) {
         add(name, price, weight,1);
     }
@@ -52,23 +51,17 @@ public class Basket {
             return;
         }
 
-        items = items + "\n" + name + " - " +
-                count + " шт. - " + price + " вес - " + weight;
+        items = items + "\n" + name + " - " +  " шт. - " +
+                count + " цена - " + price + " вес - " + weight;
         totalPrice = totalPrice + count * price;
         totalWeight = totalWeight + count*weight;
-        increaseCount();
-
+        increaseTotalPriceForAllBaskets(count * price);
+        increaseTotalCountForAllBaskets(count);
     }
-
     public void clear() {
         items = "";
         totalPrice = 0;
         totalWeight = 0;
-    }
-
-    public static int getAveragePrice() {
-        averagePrice= totalPrice/count;
-        return averagePrice;
     }
 
     public int getTotalPrice() {
@@ -82,6 +75,13 @@ public class Basket {
     public boolean contains(String name) {
         return items.contains(name);
     }
+    public static float getAverageBasketPrice() {
+        return (totalPriceForAllBaskets / count);
+    }
+
+    public static float getAveragePriceThingsInAllBaskets() {
+        return (totalPriceForAllBaskets / totalCountForAllBaskets);
+    }
 
     public void print(String title) {
         System.out.println(title);
@@ -90,6 +90,7 @@ public class Basket {
         } else {
             System.out.println(items);
         }
+
     }
 }
 public class Main {
@@ -98,7 +99,8 @@ public class Main {
         Basket basket = new Basket();
         basket.add("Milk", 40, 50);
         basket.add("Latte", 30, 20);
+        basket.add("Sugar", 10, 30);
         basket.print("Корзина");
-        System.out.println("средняя цена - " + Basket.getAveragePrice());
+        System.out.println("Средняя цена - " + Basket.getAveragePriceThingsInAllBaskets());
     }
 }
