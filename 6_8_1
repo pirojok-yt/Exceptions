@@ -2,10 +2,10 @@ public class Basket {
 
     private static int count = 0;
     private static double totalWeight = 0;
-    private String items;
-    private int totalPrice = 0;
+    private String items = "";
+    private static int totalPrice = 0;
     private int limit;
-    private static double averagePrice;
+    private static int averagePrice;
 
     public Basket() {
         items = "Список товаров:";
@@ -22,11 +22,15 @@ public class Basket {
         this.items = this.items + items;
         this.totalPrice = totalPrice;
         this.totalWeight = totalWeight;
+
     }
 
+    public static int getCount() {
+        return count;
+    }
 
     public static void increaseCount() {
-        Basket.count = Basket.count + 1;
+        count = count + 1;
     }
 
     public void add(String name, int price, double weight) {
@@ -53,6 +57,7 @@ public class Basket {
         totalPrice = totalPrice + count * price;
         totalWeight = totalWeight + count*weight;
         increaseCount();
+
     }
 
     public void clear() {
@@ -61,20 +66,17 @@ public class Basket {
         totalWeight = 0;
     }
 
+    public static int getAveragePrice() {
+        averagePrice= totalPrice/count;
+        return averagePrice;
+    }
+
     public int getTotalPrice() {
         return totalPrice;
     }
 
-    public static double getTotalWeight() {
+    public double getTotalWeight() {
         return totalWeight;
-    }
-
-    public double getAveragePrice() {
-        averagePrice = totalPrice/count;
-        return averagePrice;
-    }
-    public static int getCount() {
-        return count;
     }
 
     public boolean contains(String name) {
@@ -86,8 +88,7 @@ public class Basket {
         if (items.isEmpty()) {
             System.out.println("Корзина пуста");
         } else {
-            System.out.println(items + "\n" + "Стоимость всех товаров - " + getTotalPrice() + "\n" +"Вес всех товаров - " + getTotalWeight()+"\n" + "Кол-во товаров - " + getCount()
-            +"\n" + "средняя цена товаров - " + getAveragePrice());
+            System.out.println(items);
         }
     }
 }
@@ -98,5 +99,6 @@ public class Main {
         basket.add("Milk", 40, 50);
         basket.add("Latte", 30, 20);
         basket.print("Корзина");
+        System.out.println("средняя цена - " + Basket.getAveragePrice());
     }
 }
