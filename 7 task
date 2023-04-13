@@ -1,0 +1,33 @@
+public class Container {
+
+    private int count;
+
+    public void addCount(int value) {
+        count = count + value;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Container container = new Container();
+        container.addCount(5672);
+        System.out.println(container.getCount());
+        for(int i=1040; i<1104; i++){
+            char a=(char) i;
+            System.out.println(i+ "-" + a);
+            if(i==1045){
+                a=(char) 1025;
+                System.out.println("1025-" + a);
+            }
+            else if (i==1077){
+                a=(int) 1105;
+                System.out.println("1105-" + a);
+            }
+        }
+
+    }
+}
