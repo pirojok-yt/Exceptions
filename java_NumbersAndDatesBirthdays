@@ -1,0 +1,26 @@
+public class Main {
+    public static void main(String[] args) {
+         collectBirthdays collectBirthdays = new collectBirthdays(1990,2,21);
+
+    }
+}
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+public class collectBirthdays {
+    static LocalDate today = LocalDate.now();
+
+    public collectBirthdays(int year, int month, int day) {
+        LocalDate birthday= LocalDate.of(year, month, day);
+        DayOfWeek dayofweek;
+        int old=0;
+        while(today.isAfter(birthday)){
+            dayofweek=birthday.getDayOfWeek();
+            System.out.println(old + "-" + birthday + "-" + dayofweek);
+            birthday=birthday.plusYears(1);
+            old++;
+        }
+
+    }
+}
