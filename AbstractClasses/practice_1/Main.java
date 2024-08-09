@@ -5,14 +5,14 @@ public class Main {
         Random rand = new Random();
         Company company = new Company();
         ArrayList<Employee> employees = new ArrayList<>();
-        for(int i=0; i<180;i++){
-            company.hire(new Operator(Math.random()*100000 + 100000));
+       for(int i=0; i<180;i++){
+            company.hire(new Operator(Math.random()*100000 + 100000,company));
         }
         for(int i=0; i<80;i++){
-            company.hire(new Manager(Math.random()*100000 + 150000,Math.random()*10000000 + 30000));
+            company.hire(new Manager(Math.random()*100000 + 150000,Math.random()*10000000 + 30000,company));
         }
         for(int i=0; i<10;i++){
-            company.hire(new TopManager(Math.random()*100000 + 150000));
+            company.hire(new TopManager(Math.random()*100000 + 150000,company));
         }
         employees.addAll(company.getTopSalaryStaff(15));
         for(Employee employee : employees){
@@ -38,5 +38,6 @@ public class Main {
         for(Employee employee : employees){
             System.out.println(employee);
         }
+
     }
 }
