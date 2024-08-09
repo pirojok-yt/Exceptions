@@ -1,5 +1,6 @@
 public class Operator extends Employee {
-    public Operator(double salary){
+    public Operator(double salary, Company company){
+        super(company);
         this.salary = salary;
     }
     public String toString() {
