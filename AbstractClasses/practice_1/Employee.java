@@ -1,7 +1,18 @@
 public abstract class Employee extends Company implements Comparable{
     public double salary;
+    private Company company;
+    public Employee(Company company) {
+        this.company = company;
+    }
     public double getMonthSalary(){
         return salary;
+    }
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Company getCompany() {
+        return company;
     }
 
     public int compareTo(Object o){
