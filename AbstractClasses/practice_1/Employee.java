@@ -1,4 +1,4 @@
-public abstract class Employee extends Company implements Comparable{
+public abstract class Employee implements Comparable{
     public double salary;
     private Company company;
     public Employee(Company company) {
