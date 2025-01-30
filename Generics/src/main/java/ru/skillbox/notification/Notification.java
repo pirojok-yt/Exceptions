@@ -4,8 +4,6 @@ package ru.skillbox.notification;
  * Уведомления для пользователей
  */
 public interface Notification {
-    /**
-     * @return форматированные тело сообщений
-     */
+    String subjectOrTitle = "Успешная регистрация!";
     String formattedMessage();
 }
