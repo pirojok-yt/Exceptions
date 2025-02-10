@@ -6,9 +6,7 @@ import com.skillbox.airport.Terminal;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -39,7 +37,7 @@ public class Main {
     }
 
     public static Optional<Flight> findFirstFlightArriveToTerminal(Airport airport, String terminalName) {
-        List<Flight> flights = airport.getTerminals().stream()
+        /*List<Flight> flights = airport.getTerminals().stream()
                 .filter(terminal -> terminal.getName().equals(terminalName))
                 .flatMap(terminal -> terminal.getFlights().stream())
                 .toList();
@@ -51,6 +49,11 @@ public class Main {
                 if(firstFlight.getDate().isBefore(f.getDate()))
                     firstFlight = f;
             }
-        return Optional.of(firstFlight);
+        return Optional.of(firstFlight); */
+        return airport.getTerminals().stream()
+                .filter(terminal -> terminal.getName().equals(terminalName))
+                .flatMap(terminal -> terminal.getFlights().stream())
+                .filter(Objects::nonNull)
+                .max(Comparator.comparing(Flight::getDate));
     }
 }
