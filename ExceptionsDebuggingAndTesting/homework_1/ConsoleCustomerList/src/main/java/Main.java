@@ -1,3 +1,6 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +12,8 @@ public class Main {
             COMMAND_EXAMPLES;
     private static final String helpText = "Command examples:\n" + COMMAND_EXAMPLES;
 
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         CustomerStorage executor = new CustomerStorage();
@@ -18,7 +23,21 @@ public class Main {
             String[] tokens = command.split("\\s+", 2);
 
             if (tokens[0].equals("add")) {
-                executor.addCustomer(tokens[1]);
+                try {
+                    executor.addCustomer(tokens[1]);
+                } catch (TooMuchDataException e) {
+                    logger.error("Received more than 4 data types");
+                    e.printStackTrace();
+                } catch (FewDataException e) {
+                    logger.error("Received fewer than 4 data types");
+                    e.printStackTrace();
+                } catch(WrongEmailException e) {
+                    logger.error("Not an email was received");
+                    e.printStackTrace();
+                } catch(WrongNumberException e) {
+                    logger.error("Not a phone number was received");
+                    e.printStackTrace();
+                }
             } else if (tokens[0].equals("list")) {
                 executor.listCustomers();
             } else if (tokens[0].equals("remove")) {
